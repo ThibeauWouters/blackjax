@@ -87,7 +87,7 @@ def ess_solver(
     target_val = jnp.log(n_particles * target_ess)
 
     def fun_to_solve(delta: float | Array) -> Array:
-        log_weights = jnp.nan_to_num(-delta * logprob)
+        log_weights = jnp.nan_to_num(delta * logprob)
         ess_val = log_ess(log_weights)
 
         return ess_val - target_val
